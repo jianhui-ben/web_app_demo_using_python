@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To do</title>
+</head>
+
+<body>
+    <h1> This is my to-do list</h1>
+
+<!--    <ul>-->
+<!--        <li>temp to do item A</li>-->
+<!--        <li>temp to item B</li>-->
+
+<!--    </ul>-->
+    <ul>
+        {% for todo_item in all_items %}
+            <li>{{ todo_item.content }}</li>
+        {% endfor %}
+    </ul>
+
+    <form action="/addTodo" method="post">{% csrf_token %}
+        <input type="text" name="content"/>
+        <input type="submit" name="add"/>
+    </form>
+
+
+</body>
+
+
+
+</html>
