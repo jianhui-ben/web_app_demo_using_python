@@ -13,6 +13,12 @@ def addTodo(request):
     # save and redirect the browser to '/to-do'
     new_item = todoItem(content= request.POST['content'])
     new_item.save()
-    return HttpResponseRedirect('/to-do')
+    return HttpResponseRedirect('/to-do/')
+
+
+def deleteTodo(request, todo_id):
+    delete_item = todoItem.objects.get(id=todo_id)
+    delete_item.delete()
+    return HttpResponseRedirect('/to-do/')
 
 

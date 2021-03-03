@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>To do</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
 
 <body>
@@ -13,16 +14,25 @@
 <!--        <li>temp to item B</li>-->
 
 <!--    </ul>-->
-    <ul>
+    <ul class="list-group">
         {% for todo_item in all_items %}
-            <li>{{ todo_item.content }}</li>
+            <li class="list-group-item">
+                {{ todo_item.content }}
+                <form action="/deleteTodo/{{todo_item.id}}/"
+                      style="display: inline-block;"
+                      method="post">{% csrf_token %}
+<!--                    <input type="submit" value="delete"/>-->
+                    <button type="submit" class="btn btn-primary">delete</button>
+                </form>
+                </li>
         {% endfor %}
     </ul>
 
-    <form action="/addTodo" method="post">{% csrf_token %}
+    <form action="/addTodo/" method="post">{% csrf_token %}
         <input type="text" name="content"/>
-        <input type="submit" name="add"/>
+        <input type="submit" value="add"/>
     </form>
+
 
 
 </body>
